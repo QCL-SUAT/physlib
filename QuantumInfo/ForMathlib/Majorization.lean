@@ -673,8 +673,8 @@ lemma IsHermitian.inner_le_sup_eigenvalue_mul_inner
     simp [dotProduct, Matrix.mulVec, Finset.mul_sum _ _ _, mul_assoc, mul_comm,]
     simp [Complex.normSq, Complex.sq_norm, diagonal]
     rw [← Finset.sum_sub_distrib]; refine' Finset.sum_congr rfl fun i hi => _; rw [Finset.sum_eq_single i, Finset.sum_eq_single i] <;> simp +contextual; ring_nf
-    · exact fun j hj => Or.inl (by rw [if_neg (Ne.symm hj)]; norm_num)
-    · exact fun j hj => Or.inl (by rw [if_neg (Ne.symm hj)]; norm_num)
+    · exact fun j hj => Or.inl (by rw [ite_eq_right (Ne.symm hj)]; norm_num)
+    · exact fun j hj => Or.inl (by rw [ite_eq_right (Ne.symm hj)]; norm_num)
   -- Since $U$ is unitary, we have $\|w\|^2 = \|v\|^2$.
   have h_unitary : ∑ i, ‖w i‖ ^ 2 = (star v ⬝ᵥ v).re := by
     have h_unitary : ∀ (U : Matrix e e ℂ), U.conjTranspose * U = 1 → ∀ (v : e → ℂ), ∑ i, ‖(U.mulVec v) i‖ ^ 2 = ∑ i, ‖v i‖ ^ 2 := by

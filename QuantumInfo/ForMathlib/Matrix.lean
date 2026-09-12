@@ -211,7 +211,7 @@ theorem stdBasisMatrix_iff_eq (i j : m) {c : 𝕜} (hc : 0 < c) : (single i j c)
   · intro ⟨hherm, _⟩
     rw [IsHermitian, ← ext_iff] at hherm
     replace hherm := hherm i j
-    simp only [single, conjTranspose_apply, of_apply, true_and, RCLike.star_def, if_true] at hherm
+    simp only [single, conjTranspose_apply, of_apply, true_and, RCLike.star_def, ite_true] at hherm
     apply_fun (starRingEnd 𝕜) at hherm
     have hcstar := RCLike.conj_eq_iff_im.mpr (RCLike.pos_iff.mp hc).right
     rw [starRingEnd_self_apply, hcstar, ite_eq_left_iff] at hherm
@@ -243,7 +243,7 @@ theorem stdBasisMatrix_iff_eq (i j : m) {c : 𝕜} (hc : 0 < c) : (single i j c)
             by_contra hz'
             apply hz
             exact ⟨hz'.left.symm, hz'.right.symm⟩
-          rw [ite_cond_eq_false _ _ (eq_false h₁)]
+          rw [ite_eq_right_of_eq_false _ _ (eq_false h₁)]
           ring
         rw [Fintype.sum_eq_single ⟨i, i⟩]
         · simp [mul_assoc]
@@ -864,7 +864,7 @@ theorem cfc_diagonal (g : d → ℝ) (f : ℝ → ℝ) :
       change Matrix.conjTranspose _ = _
       simp [Matrix.conjTranspose]
   --TODO cfc_cont_tac
-  rw [cfc, dif_pos ⟨h_self_adjoint, continuousOn_iff_continuous_domRestrict.mpr <| by fun_prop⟩]
+  rw [cfc, dite_eq_left ⟨h_self_adjoint, continuousOn_iff_continuous_domRestrict.mpr <| by fun_prop⟩]
   rw [cfcHom_eq_of_continuous_of_map_id]
   rotate_left
   · refine' { .. }
