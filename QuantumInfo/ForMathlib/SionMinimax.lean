@@ -229,7 +229,7 @@ theorem LowerSemicontinuousOn.dite_top {α β : Type*} [TopologicalSpace α] [Pr
     filter_upwards [self_mem_nhdsWithin,
       mem_nhdsWithin_of_mem_nhds (hu.isOpen_compl.mem_nhds hxu)]
     intro z hzs hzu
-    rw [dif_neg (show ¬p z from fun hpz ↦ hzu ((hsu z hzs).mpr hpz))]
+    rw [dite_eq_right (show ¬p z from fun hpz ↦ hzu ((hsu z hzs).mpr hpz))]
     exact hy
 
 theorem LowerSemicontinuousOn.comp_continuousOn {α β γ : Type*}

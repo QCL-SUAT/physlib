@@ -1440,7 +1440,7 @@ private lemma sandwichedTraceFunctional_sub_one_div_eventually_le
   have h_r_nonneg : ∀ α : ℝ, 1 < α → 0 ≤ r α := by
     intro α hα
     have h := sandwichedRelRentropy_nonneg (ρ := ρ) (σ := σ) (α := α) (by linarith) hker
-    rw [if_neg hα.ne'] at h
+    rw [ite_eq_right hα.ne'] at h
     simpa [hr_def, sandwichedTraceFunctional] using h
   have h_eq : ∀ α : ℝ, 1 < α → D̃_ α(ρ‖σ) = ENNReal.ofReal (r α) := fun α hα =>
     sandwichedRelRentropy_eq_log_traceFunctional (by linarith) hα.ne' hker

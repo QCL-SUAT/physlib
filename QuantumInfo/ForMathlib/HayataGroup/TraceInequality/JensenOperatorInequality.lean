@@ -166,6 +166,7 @@ private lemma spectrum_zero_subset_Ici_wrap :
   simp [Set.Ici, hx0]
 
 omit [Nontrivial ℋ] in
+omit [CompleteSpace ℋ] in
 private lemma blockDiagonal_le_left_wrap {A0 A1 B0 B1 : L ℋ}
     (h : blockDiagonal (ℋ := ℋ) A0 A1 ≤ blockDiagonal (ℋ := ℋ) B0 B1) :
     A0 ≤ B0 := by

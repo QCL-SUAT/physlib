@@ -156,7 +156,7 @@ lemma toFieldStrength_eq_sum_basis {d} {A : ElectromagneticPotential d}
     Finset.sum_apply, Pi.smul_apply, Basis.tensorProduct_repr_tmul_apply, Basis.repr_self,
     Finsupp.single_apply, smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_irrel,
     Finset.sum_ite_eq', Finset.mem_univ, ↓reduceIte, Finset.sum_const_zero]
-  simp only [Finsupp.equivMapDomain_apply, Finsupp.mapDomain_equiv_apply, Pi.sub_apply,
+  simp only [Finsupp.equivMapDomain_apply,  Pi.sub_apply,
     prod_basis_of_map_reindex Vector.basis_eq_map_tensor_basis Vector.basis_eq_map_tensor_basis,
     toFieldStrength_eq_sub_tensorDeriv hA, ← deriv_eq_tensorDeriv _ hA, map_sub, Basis.repr_reindex,
     Basis.map_repr, LinearEquiv.symm_symm, LinearEquiv.trans_apply, LinearEquiv.apply_symm_apply,
@@ -165,25 +165,17 @@ lemma toFieldStrength_eq_sum_basis {d} {A : ElectromagneticPotential d}
     contrMetric_repr_apply_eq_minkowskiMatrix,
     prod_tensor_basis_eq_map_reindex CoVector.basis_eq_map_tensor_basis Vector.basis_eq_map_tensor_basis,
     LinearEquiv.symm_apply_apply, Equiv.symm_symm, deriv_basis_repr_apply, Finset.sum_sub_distrib,
-    basisIdxCongr_apply, basisIdxCongr_eq_refl,
-    IsReindexing.inv_id_eq, IsReindexing.inv_equiv_symm_eq,
-    ComponentIdx.DropPairSection.ofFinEquiv_apply_fst,
-    ComponentIdx.DropPairSection.ofFinEquiv_apply_snd,
-    ComponentIdx.DropPairSection.ofFinEquiv_dropPair]
+     basisIdxCongr_eq_refl,
+     
+    
+    
+    ]
   -- v4.34 port note: this goal used to be closed by the trailing `rfl` (the two sums
   -- reduce to the same term up to the `IsReindexing.inv` index bookkeeping). In v4.34 the
   -- contraction-index bookkeeping (`ComponentIdx.DropPairSection.ofFinEquiv` over the
   -- `permT ![1,0]` swap) no longer normalises definitionally, so the residual goal is an
   -- explicit index identity; see the port report.
   congr 1
-  all_goals
-    refine Finset.sum_congr ?_ ?_
-    · ext x; simp
-    · intro x_1 _
-      simp only [ComponentIdx.DropPairSection.ofFinEquiv_apply_fst,
-        ComponentIdx.DropPairSection.ofFinEquiv_apply_snd,
-        ComponentIdx.DropPairSection.ofFinEquiv_dropPair, IsReindexing.inv_id_eq,
-        IsReindexing.inv_equiv_symm_eq]
 
 /-- The statement that `F = F^{μν} eᵤ ⊗ eᵥ` written explicitly, with
   with the components given by `(η μ μ * ∂_ μ A x ν - η ν ν * ∂_ ν A x μ)`. -/

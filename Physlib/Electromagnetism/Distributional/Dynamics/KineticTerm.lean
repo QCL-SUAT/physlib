@@ -197,8 +197,8 @@ lemma gradKineticTerm_eq_distTensorDeriv {d} {𝓕 : FreeSpace}
       (fun | 0 => μ | 1 => ν)
   · generalize (distDeriv μ (A.fieldStrength) ε) = t at *
     rw [Tensorial.basis_toTensor_apply, Tensorial.basis_map_prod]
-    simp only [Basis.repr_reindex, Finsupp.mapDomain_equiv_apply,
-      Equiv.symm_symm]
+    simp only [Basis.repr_reindex, 
+      ]
     rw [Lorentz.Vector.tensor_basis_map_eq_basis_reindex]
     have hb : (((Lorentz.Vector.basis (d := d)).reindex
         Lorentz.Vector.indexEquiv.symm).tensorProduct

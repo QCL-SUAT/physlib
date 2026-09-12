@@ -196,6 +196,7 @@ private lemma cfcR_blockDiagonal (f : ℝ → ℝ)
           simp [φ, blockDiagonalHom]
 
 -- Converting positivity on a block-diagonal operator to each diagonal block is expensive.
+omit [CompleteSpace ℋ] in
 private lemma blockDiagonal_le_left {A0 A1 B0 B1 : L ℋ}
     (h : blockDiagonal (ℋ := ℋ) A0 A1 ≤ blockDiagonal (ℋ := ℋ) B0 B1) :
     A0 ≤ B0 := by

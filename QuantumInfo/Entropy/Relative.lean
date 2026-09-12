@@ -1047,7 +1047,7 @@ private lemma cross_term_slope_tendsto_zero
         positivity);
         refine' ⟨ δ, hδ_pos, fun x hx hx' => _ ⟩;
         simp +zetaDelta at *;
-        rw [ if_neg hx ];
+        rw [ ite_eq_right hx ];
         rw [ ← Finset.sum_sub_distrib ];
         exact lt_of_le_of_lt ( Finset.abs_sum_le_sum_abs _ _ ) ( lt_of_le_of_lt ( Finset.sum_le_sum fun i _ => le_of_lt ( by simpa [ hx ] using hδ x hx hx' i ) ) ( by norm_num; nlinarith [ mul_div_cancel₀ ε ( by positivity : ( Fintype.card d + 1 : ℝ ) ≠ 0 ) ] ) );
       · rw [ Metric.tendsto_nhdsWithin_nhds ];
@@ -1688,7 +1688,7 @@ private theorem sandwichedRelRentropy.continuousOn_Ioi_1 (ρ σ : MState d) :
       dsimp only
       have hα₀ : 0 < α := by linarith
       have hα₁ : α ≠ 1 := by linarith
-      simp only [dif_pos hα₀, if_neg hα₁, ENNReal.ofReal]
+      simp only [dite_eq_left hα₀, ite_eq_right hα₁, ENNReal.ofReal]
       rw [Real.toNNReal_of_nonneg]
       rfl
   · rw [continuousOn_congr (f := fun α ↦ ⊤)]
@@ -1748,7 +1748,7 @@ set_option backward.isDefEq.respectTransparency false in
 private theorem sandwichedRelRentropy.continuousAt_1 (ρ σ : MState d) :
     ContinuousWithinAt (fun α => D̃_ α(ρ‖σ)) (Set.Ioi 0) 1 := by
   by_cases h : σ.M.ker ≤ ρ.M.ker
-  · simp only [ContinuousWithinAt, SandwichedRelRentropy, dif_pos h, zero_lt_one, if_true]
+  · simp only [ContinuousWithinAt, SandwichedRelRentropy, dite_eq_left h, zero_lt_one, ite_true]
     -- Use the fact that the limit of the real-valued function is the inner product.
     have h_real_limit : Filter.Tendsto (fun α : ℝ => if α = 1 then ⟪ρ.M, ρ.M.log - σ.M.log⟫ else Real.log ((HermitianMat.conj (σ.M ^ ((1 - α) / (2 * α))).mat) ρ.M ^ α).trace / (α - 1)) (nhdsWithin 1 (Set.Ioi 0)) (nhds ⟪ρ.M, ρ.M.log - σ.M.log⟫) := by
       have h_real_limit : Filter.Tendsto (fun α : ℝ => Real.log ((HermitianMat.conj (σ.M ^ ((1 - α) / (2 * α))).mat) ρ.M ^ α).trace / (α - 1)) (nhdsWithin 1 (Set.Ioi 0 \ {1})) (nhds ⟪ρ.M, ρ.M.log - σ.M.log⟫) := by
@@ -1770,7 +1770,7 @@ private theorem sandwichedRelRentropy.continuousAt_1 (ρ σ : MState d) :
       exact Real.toNNReal_of_nonneg _
   · apply tendsto_const_nhds.congr'
     filter_upwards [self_mem_nhdsWithin] with α hα
-    simp only [SandwichedRelRentropy, Set.mem_Ioi.mp hα, zero_lt_one, dif_neg h]
+    simp only [SandwichedRelRentropy, Set.mem_Ioi.mp hα, zero_lt_one, dite_eq_right h]
 
 @[fun_prop]
 theorem sandwichedRelRentropy.continuousOn (ρ σ : MState d) :
@@ -2097,7 +2097,7 @@ carefully handling what happens with the kernel subspace, which will make this a
 set_option backward.isDefEq.respectTransparency false in
 @[fun_prop]
 theorem qRelativeEnt.lowerSemicontinuous (ρ : MState d) : LowerSemicontinuous fun σ => 𝐃(ρ‖σ) := by
-  simp_rw [qRelativeEnt, SandwichedRelRentropy, if_true, lowerSemicontinuous_iff]
+  simp_rw [qRelativeEnt, SandwichedRelRentropy, ite_true, lowerSemicontinuous_iff]
   simp only [zero_lt_one, ↓reduceDIte]
   intro x
   by_cases hx : x.M.ker ≤ ρ.M.ker
