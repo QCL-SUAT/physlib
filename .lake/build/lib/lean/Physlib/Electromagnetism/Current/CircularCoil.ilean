@@ -1,0 +1,1 @@
+{"decls":{},"directImports":[["Physlib.Meta.TODO.Basic",false,false,false]],"module":"Physlib.Electromagnetism.Current.CircularCoil","references":{"{\"c\":{\"m\":\"Init.Data.Nat.Basic\",\"n\":\"Nat.succ_eq_add_one\"}}":{"definition":null,"usages":[[38,18,38,37]]}},"version":5}

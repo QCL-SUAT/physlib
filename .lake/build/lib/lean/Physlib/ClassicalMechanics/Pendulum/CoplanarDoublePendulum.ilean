@@ -1,0 +1,1 @@
+{"decls":{},"directImports":[["Physlib.Meta.Linters.Sorry",false,false,false]],"module":"Physlib.ClassicalMechanics.Pendulum.CoplanarDoublePendulum","references":{"{\"c\":{\"m\":\"Physlib.ClassicalMechanics.Pendulum.CoplanarDoublePendulum\",\"n\":\"ClassicalMechanics.CoplanarDoublePendulum.ConfigurationSpace\"}}":{"definition":[73,4,73,22],"usages":[]}},"version":5}

@@ -1,0 +1,15 @@
+{"synthetic": true,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"rs": "383768fc7d421d1f.ir.sig",
+  "r": "06fcf3f0ae1d113a.ir",
+  "o":
+  ["45acc02a5092aaaf.olean",
+   "57d5795966dc6d0e.olean.server",
+   "b2bbf8f2e36d4d17.olean.private"],
+  "m": true,
+  "i": "00191e1facf69bde.ilean",
+  "c": "3ecab5d1bd829949.c"},
+ "log": [],
+ "inputs": [],
+ "depHash": "d4a3d48fd879b9ff"}
