@@ -1,6 +1,10 @@
 name = "Physlib"
 
-defaultTargets = ["QuantumInfo"]
+# Upstream declares both libraries here. The port had dropped "Physlib", which
+# meant the Physlib/** modules were only ever compiled as dependencies of
+# QuantumInfo and never as a target of their own -- e.g. ChargeSpectrum/ZMod.lean
+# had no build trace until this was restored. Kept at upstream parity.
+defaultTargets = ["Physlib", "QuantumInfo"]
 
 [[require]]
 name = "mathlib"
@@ -18,3 +22,135 @@ moreLeanArgs = ["-Dwarn.sorry=false", "-Dweak.says.verify=true"]
 [[lean_lib]]
 name = "QuantumInfo"
 moreLeanArgs = ["-Dwarn.sorry=false", "-Dweak.says.verify=true"]
+
+# Script executables. Upstream declares these and the port dropped them, which
+# meant `scripts/**` was never compiled -- hiding several files with genuine
+# v4.34 core-API drift. Restored here for every target whose source is present.
+# `testImportScripts` is upstream-only (no Meta/test directory in this checkout).
+#
+# Seven script files in this checkout still have no target. Each is excluded for a
+# concrete reason, verified 2026-09-12 by single-file compile; none is a silent gap:
+#   style_lint                  uses `Substring.Raw.findAllSubstr`, removed in v4.34
+#                               with no `findAll` replacement -- needs the search
+#                               rewritten, not a rename.
+#   notes                       references `Physlib.physHermite`, which no longer
+#                               exists in this tree.
+#   mathlib_textLint_on_physlib uses mathlib's text-lint API (`OutputSetting`), which
+#                               has changed shape upstream.
+#   openAI_doc_check            imports an `LLM` module that is not vendored here.
+#   regex_lint                  imports a `Regex` module that is not vendored here.
+#   Template                    a doc-gen4 template; imports `DocGen4`, not vendored.
+# scripts/APIMapIndex.lean *did* have a `main` and is declared below.
+
+[[lean_exe]]
+name = "get_cache"
+srcDir = "scripts"
+
+[[lean_exe]]
+name = "check_file_imports"
+srcDir = "scripts"
+
+[[lean_exe]]
+name = "autolabel"
+srcDir = "scripts"
+
+[[lean_exe]]
+name = "type_former_lint"
+srcDir = "scripts"
+
+[[lean_exe]]
+name = "lint_all"
+srcDir = "scripts"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "check_dup_tags"
+srcDir = "scripts/MetaPrograms"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "sorry_lint"
+srcDir = "scripts/MetaPrograms"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "runPhyslibLinters"
+srcDir = "scripts/MetaPrograms"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "runPhyslibAlphaLinters"
+srcDir = "scripts/PhyslibAlpha"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "noAlphaImports"
+srcDir = "scripts/PhyslibAlpha"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "alphaFileImports"
+srcDir = "scripts/PhyslibAlpha"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "free_simps"
+srcDir = "scripts/MetaPrograms"
+
+[[lean_exe]]
+name = "spelling"
+srcDir = "scripts/MetaPrograms"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "check_rfl"
+srcDir = "scripts/MetaPrograms"
+
+[[lean_exe]]
+name = "redundant_imports"
+srcDir = "scripts/MetaPrograms"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "module_doc_lint"
+srcDir = "scripts/MetaPrograms"
+
+[[lean_exe]]
+name = "stats"
+srcDir = "scripts"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "local_stats"
+srcDir = "scripts/MetaPrograms"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "make_tag"
+srcDir = "scripts/MetaPrograms"
+supportInterpreter = true
+
+# `scripts/APIMapIndex.lean` has a `main` and its docstring calls itself an
+# executable, but no `[[lean_exe]]` was declared for it -- so `lake build` never
+# compiled it. Same shape as `TODO_to_yml` (YAML to stdout, `mkFile` writes it).
+[[lean_exe]]
+name = "APIMapIndex"
+srcDir = "scripts"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "TODO_to_yml"
+srcDir = "scripts/MetaPrograms"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "informal"
+srcDir = "scripts/MetaPrograms"
+supportInterpreter = true
+
+[[lean_exe]]
+name = "find_TODOs"
+srcDir = "scripts"
+# Not declared here: `style_lint` (Substring.Raw.findAllSubstr removed in v4.34, no
+# findAll replacement), `notes` and `mathlib_textLint_on_physlib` (reference symbols /
+# a text-lint API this checkout does not have). See the port notes for details.

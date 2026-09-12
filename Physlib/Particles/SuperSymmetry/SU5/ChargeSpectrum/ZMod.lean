@@ -13,6 +13,11 @@ public import Mathlib.Data.ZMod.Defs
 public import Physlib.Particles.SuperSymmetry.SU5.ChargeSpectrum.Yukawa
 public import Physlib.Particles.SuperSymmetry.SU5.ChargeSpectrum.Completions
 public import Physlib.Meta.Linters.Sorry
+
+-- The four `ZModCharges_*` lemmas below used `native_decide`; they are now closed by
+-- kernel `decide`, which needs a deeper recursion budget than the 1000 default.
+set_option maxRecDepth 1000000
+set_option maxHeartbeats 20000000
 /-!
 
 # Charge spectra with values in `ZMod n`
@@ -110,8 +115,7 @@ lemma ZModCharges_two_eq : ZModCharges 2 = ∅ := by decide
 
 /-- This lemma corresponds to the statement that there are no choices of `ℤ₃` representations
   which give a phenomenologically viable theory. -/
-@[pseudo]
-lemma ZModCharges_three_eq : ZModCharges 3 = ∅ := by native_decide
+lemma ZModCharges_three_eq : ZModCharges 3 = ∅ := by decide
 
 /-!
 
@@ -119,10 +123,9 @@ lemma ZModCharges_three_eq : ZModCharges 3 = ∅ := by native_decide
 
 -/
 
-@[pseudo]
 lemma ZModCharges_four_eq : ZModCharges 4 = {⟨some 0, some 2, {1}, {3}⟩,
     ⟨some 0, some 2, {3}, {1}⟩, ⟨some 1, some 2, {0}, {3}⟩, ⟨some 3, some 2, {0}, {1}⟩} := by
-  native_decide
+  decide
 
 /-!
 
@@ -132,8 +135,7 @@ lemma ZModCharges_four_eq : ZModCharges 4 = {⟨some 0, some 2, {1}, {3}⟩,
 
 /-- This lemma corresponds to the statement that there are no choices of `ℤ₅` representations
   which give a phenomenologically viable theory. -/
-@[pseudo]
-lemma ZModCharges_five_eq : ZModCharges 5 = ∅ := by native_decide
+lemma ZModCharges_five_eq : ZModCharges 5 = ∅ := by decide
 
 /-!
 
@@ -141,14 +143,13 @@ lemma ZModCharges_five_eq : ZModCharges 5 = ∅ := by native_decide
 
 -/
 
-@[pseudo]
 lemma ZModCharges_six_eq : ZModCharges 6 = {⟨some 0, some 2, {5}, {1}⟩,
     ⟨some 0, some 4, {1}, {5}⟩, ⟨some 1, some 0, {2}, {3}⟩, ⟨some 1, some 2, {4}, {1}⟩,
     ⟨some 1, some 4, {0}, {5}⟩, ⟨some 1, some 4, {3}, {2}⟩, ⟨some 2, some 0, {1}, {3}⟩,
     ⟨some 2, some 4, {5}, {5}⟩, ⟨some 3, some 2, {5}, {4}⟩, ⟨some 3, some 4, {1}, {2}⟩,
     ⟨some 4, some 0, {5}, {3}⟩, ⟨some 4, some 2, {1}, {1}⟩, ⟨some 5, some 0, {4}, {3}⟩,
     ⟨some 5, some 2, {0}, {1}⟩, ⟨some 5, some 2, {3}, {4}⟩, ⟨some 5, some 4, {2}, {5}⟩} := by
-  native_decide
+  decide
 
 /-!
 
