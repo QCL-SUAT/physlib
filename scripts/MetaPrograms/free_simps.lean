@@ -53,7 +53,7 @@ def visitTacticInfo (file : FilePath) (ci : ContextInfo) (ti : TacticInfo) : Met
   let some sp := stx.getPos? | return ()
   let startPosition := ci.fileMap.toPosition sp
   let some ep := stx.getTailPos? | return ()
-  let s := Substring.mk ci.fileMap.source sp ep
+  let s : Substring.Raw := { str := ci.fileMap.source, startPos := sp, stopPos := ep }
   if ti.goalsAfter.length ≠ 0  ∧ ¬ String.containsSubstr s.toString  "only" then
     println! "./{file}:{startPosition.line}"
 

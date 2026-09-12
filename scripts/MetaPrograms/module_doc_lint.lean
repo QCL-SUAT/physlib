@@ -153,7 +153,7 @@ def checkHeadings (f : FilePath) : IO (List DocLintError) := do
     otherHeadingsError := otherHeadingsError ++ s!"\n Section references not ending in a dot: {levelsNoDot}"
   /- The number of dots should equal one less then the number of dashes e.g.
     ## A., ### A.1. etc. -/
-  let badLevels := otherHeaddingsSplit.filter (fun l ↦ l[0]!.count '#' ≠ l[1]!.count '.' + 1 )
+  let badLevels := otherHeaddingsSplit.filter (fun l ↦ l[0]!.toList.count '#' ≠ l[1]!.toList.count '.' + 1 )
   if badLevels.size ≠ 0 then
     otherHeadingsError := otherHeadingsError ++ s!"\n Section references with the wrong number of hashes: {badLevels}"
   /- Duplicate tags -/
@@ -173,7 +173,7 @@ def checkHeadings (f : FilePath) : IO (List DocLintError) := do
   /- Table of contents check. -/
   let tocLines ← getTableOfContents f
   let mut tocCorrectError := ""
-  let expectedLevel1 (n : ℕ) := (otherHeadings.filter (fun l ↦ l.count '#' ≤ n)).map fun l =>
+  let expectedLevel1 (n : ℕ) := (otherHeadings.filter (fun l ↦ l.toList.count '#' ≤ n)).map fun l =>
     let l' := l
     let l' := l'.replace "#### "  "    - "
     let l' := l'.replace "### "  "  - "

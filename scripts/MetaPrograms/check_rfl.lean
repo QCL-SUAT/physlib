@@ -63,7 +63,7 @@ def visitTacticInfo (file : FilePath) (ci : ContextInfo) (ti : TacticInfo) : Met
   let some sp := stx.getPos? | return ()
   let startPosition := ci.fileMap.toPosition sp
   let some ep := stx.getTailPos? | return ()
-  let s := Substring.mk ci.fileMap.source sp ep
+  let s : Substring.Raw := { str := ci.fileMap.source, startPos := sp, stopPos := ep }
   for g in ti.goalsBefore do
     (← IO.getStdout).flush
     let mctx := ti.mctxBefore
@@ -88,7 +88,7 @@ unsafe def processAllFiles : IO Unit := do
   let tasks := files.map fun f =>
     ((IO.asTask $ IO.Process.run
     {cmd := "lake", args := #["exe", "check_rfl", f.toString]}), f)
-  (tasks.toList.indexesValues (fun _ => true)).forM fun (n, (t, path)) => do
+  ((List.range tasks.toList.length).zip tasks.toList).forM fun (n, (t, path)) => do
     println! "{n} of {tasks.toList.length}: {path}"
     let tn ← IO.wait (← t)
     match tn with

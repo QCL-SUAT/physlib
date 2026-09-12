@@ -22,7 +22,7 @@ open Lean System Meta
 latin letter then that letter is capital.  -/
 def IsUpperCamel (s : String) : Bool :=
   let parts := s.splitOn "."
-  let lastPart := parts.get! (parts.length - 1)
+  let lastPart := parts[parts.length - 1]!
   lastPart = "noConfusionType" ∨
   (¬ (lastPart.get 0 ≥ 'A' ∧ lastPart.get 0 ≤ 'z')) ∨ (lastPart.get 0 ≥ 'A' ∧ lastPart.get 0 ≤ 'Z')
 

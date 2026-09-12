@@ -25,8 +25,8 @@ def PhyslibTODOItem : Type := Array String → Array (String × ℕ)
 
 /-- Checks if a . -/
 def TODOFinder : PhyslibTODOItem := fun lines ↦ Id.run do
-  let enumLines := (lines.toList.enumFrom 1)
-  let todos := enumLines.filterMap (fun (lno1, l1) ↦
+  let enumLines := (lines.toList.zipIdx 1)
+  let todos := enumLines.filterMap (fun (l1, lno1) ↦
     if l1.startsWith "/-! TODO:"   then
       some ((l1.replace "/-! TODO: " "").replace "-/" "", lno1)
     else none)
@@ -85,7 +85,7 @@ def main (args : List String) : IO UInt32 := do
   let mut out :  String :=  ""
   for imp in physlibMod.imports do
     if imp.module == `Init then continue
-    let filePath := (mkFilePath (imp.module.toString.split (· == '.'))).addExtension "lean"
+    let filePath := (mkFilePath (imp.module.toString.splitOn ".")).addExtension "lean"
     let l ← physlibLintFile filePath
     if l != "" then
       out := out ++ "\n### " ++ imp.module.toString ++ "\n"

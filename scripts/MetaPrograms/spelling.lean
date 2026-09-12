@@ -45,7 +45,8 @@ def allWords : MetaM (Array String) := do
   let allDocStrings := allDocStrings ++ allModuleDocs
   let allDocStrings := allDocStrings.filter (fun x => x ≠ "")
   let allList := allDocStrings.flatMap (fun s =>
-      (s.split (fun c => c.isWhitespace || ".,?!:;()[]{}<>\"'".contains c)).toArray)
+      (s.split (fun (c : Char) => c.isWhitespace || ".,?!:;()[]{}<>\"'".contains c)).toArray.map
+        String.Slice.toString)
   let allList := (allList.filter (fun w => w ≠ "" ∧ w ≠ " ")).toList.dedup.toArray
 
   let allList := allList.qsort (fun a b => a.toLower < b.toLower)
