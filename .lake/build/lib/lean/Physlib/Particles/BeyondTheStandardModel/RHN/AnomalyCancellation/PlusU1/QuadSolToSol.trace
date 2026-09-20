@@ -1,15 +1,56 @@
-{"synthetic": true,
+{"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"rs": "fae6a52132dedb16.ir.sig",
-  "r": "20cd50b578f2d15e.ir",
+ {"rs": "26ff8b7dc37067f5.ir.sig",
+  "r": "e7f97a787947badc.ir",
   "o":
-  ["197b85c5d51a175e.olean",
-   "af01f597fb0734a5.olean.server",
-   "6ea6f1461f1232bb.olean.private"],
+  ["6183e7f91d9da6ba.olean",
+   "985f920627778627.olean.server",
+   "099c0c37e6232207.olean.private"],
   "m": true,
   "i": "b864e2603001072d.ilean",
-  "c": "bddf102571161d82.c"},
- "log": [],
- "inputs": [],
- "depHash": "99289bce542896ed"}
+  "c": "cc7c4498b3e8ea34.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=C:\\lean\\mathlib4\\.lake\\packages\\Cli\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\build\\lib\\lean;C:\\lean\\libs\\physlib\\.lake\\build\\lib\\lean c:\\Users\\Administrator\\.elan\\toolchains\\leanprover--lean4---v4.34.0\\bin\\lean.exe -Dwarn.sorry=false -Dweak.says.verify=true C:\\lean\\libs\\physlib\\Physlib\\Particles\\BeyondTheStandardModel\\RHN\\AnomalyCancellation\\PlusU1\\QuadSolToSol.lean -o C:\\lean\\libs\\physlib\\.lake\\build\\lib\\lean\\Physlib\\Particles\\BeyondTheStandardModel\\RHN\\AnomalyCancellation\\PlusU1\\QuadSolToSol.olean -i C:\\lean\\libs\\physlib\\.lake\\build\\lib\\lean\\Physlib\\Particles\\BeyondTheStandardModel\\RHN\\AnomalyCancellation\\PlusU1\\QuadSolToSol.ilean -c C:\\lean\\libs\\physlib\\.lake\\build\\ir\\Physlib\\Particles\\BeyondTheStandardModel\\RHN\\AnomalyCancellation\\PlusU1\\QuadSolToSol.c --setup C:\\lean\\libs\\physlib\\.lake\\build\\ir\\Physlib\\Particles\\BeyondTheStandardModel\\RHN\\AnomalyCancellation\\PlusU1\\QuadSolToSol.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSolToSol.lean:124:63: `if_pos` has been deprecated: Use `ite_eq_left` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSolToSol.lean:125:63: `if_pos` has been deprecated: Use `ite_eq_left` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSolToSol.lean:131:72: `if_neg` has been deprecated: Use `ite_eq_right` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSolToSol.lean:137:22: `dif_pos` has been deprecated: Use `dite_eq_left` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSolToSol.lean:139:22: `dif_neg` has been deprecated: Use `dite_eq_right` instead",
+   "level": "warning"}],
+ "inputs":
+ [["deps",
+   [["Physlib/Physlib:extraDep", [["@Physlib:extraDep", "00000000000006bb"]]],
+    ["imports",
+     [["Physlib.Particles.BeyondTheStandardModel.RHN.AnomalyCancellation.PlusU1.BMinusL transitive imports (public)",
+       "ce67bbee80f07f06"],
+      ["Physlib.Particles.BeyondTheStandardModel.RHN.AnomalyCancellation.PlusU1.BMinusL:importArts",
+       "07c0407cfb2c90db"]]]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.34.0, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b",
+   "a1c6c7aa3e9abfe7"],
+  ["C:\\lean\\libs\\physlib\\Physlib\\Particles\\BeyondTheStandardModel\\RHN\\AnomalyCancellation\\PlusU1\\QuadSolToSol.lean",
+   "7a088677cef63ec8"],
+  ["options", "00000000000006bb"],
+  ["isModule: true", "760fcc16989f4b9b"],
+  ["Module.name: Physlib.Particles.BeyondTheStandardModel.RHN.AnomalyCancellation.PlusU1.QuadSolToSol",
+   "aed6b21cc66f0915"],
+  ["Package.id?: (some Physlib)", "6dd4b1a3d0e46d70"],
+  ["Module.leanArgs: #[-Dwarn.sorry=false, -Dweak.says.verify=true]",
+   "72cd5083b9c31fb2"]],
+ "depHash": "b4bdf04ad24aff61"}

@@ -1,0 +1,2 @@
+# Build artifacts are stored byte-for-byte: never apply end-of-line conversion.
+.lake/** -text

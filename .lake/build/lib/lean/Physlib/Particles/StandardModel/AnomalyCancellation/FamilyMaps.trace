@@ -1,15 +1,71 @@
-{"synthetic": true,
+{"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"rs": "dada0fa2ed5c9c88.ir.sig",
-  "r": "5f5b4fabccb91af7.ir",
+ {"rs": "682fb777732ea2f7.ir.sig",
+  "r": "ab75d35a98452e85.ir",
   "o":
-  ["5b1af6b6e8c0f038.olean",
-   "ed970083669ab2bd.olean.server",
-   "56b4c62d71e0a38e.olean.private"],
+  ["447aad16d352458b.olean",
+   "99544ee1d3d92cf2.olean.server",
+   "12c9c83bb4dd5ed0.olean.private"],
   "m": true,
   "i": "92c739acfefd5d71.ilean",
   "c": "84e4cf7ea9ceb308.c"},
- "log": [],
- "inputs": [],
- "depHash": "18db5766db1d206f"}
+ "log":
+ [{"message":
+   ".> LEAN_PATH=C:\\lean\\mathlib4\\.lake\\packages\\Cli\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean;C:\\lean\\mathlib4\\.lake\\build\\lib\\lean;C:\\lean\\libs\\physlib\\.lake\\build\\lib\\lean c:\\Users\\Administrator\\.elan\\toolchains\\leanprover--lean4---v4.34.0\\bin\\lean.exe -Dwarn.sorry=false -Dweak.says.verify=true C:\\lean\\libs\\physlib\\Physlib\\Particles\\StandardModel\\AnomalyCancellation\\FamilyMaps.lean -o C:\\lean\\libs\\physlib\\.lake\\build\\lib\\lean\\Physlib\\Particles\\StandardModel\\AnomalyCancellation\\FamilyMaps.olean -i C:\\lean\\libs\\physlib\\.lake\\build\\lib\\lean\\Physlib\\Particles\\StandardModel\\AnomalyCancellation\\FamilyMaps.ilean -c C:\\lean\\libs\\physlib\\.lake\\build\\ir\\Physlib\\Particles\\StandardModel\\AnomalyCancellation\\FamilyMaps.c --setup C:\\lean\\libs\\physlib\\.lake\\build\\ir\\Physlib\\Particles\\StandardModel\\AnomalyCancellation\\FamilyMaps.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "Physlib/Particles/StandardModel/AnomalyCancellation/FamilyMaps.lean:70:10: `dif_pos` has been deprecated: Use `dite_eq_left` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/StandardModel/AnomalyCancellation/FamilyMaps.lean:70:22: `dif_pos` has been deprecated: Use `dite_eq_left` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/StandardModel/AnomalyCancellation/FamilyMaps.lean:70:34: `dif_pos` has been deprecated: Use `dite_eq_left` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/StandardModel/AnomalyCancellation/FamilyMaps.lean:71:10: `dif_neg` has been deprecated: Use `dite_eq_right` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/StandardModel/AnomalyCancellation/FamilyMaps.lean:71:22: `dif_neg` has been deprecated: Use `dite_eq_right` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/StandardModel/AnomalyCancellation/FamilyMaps.lean:71:34: `dif_neg` has been deprecated: Use `dite_eq_right` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/StandardModel/AnomalyCancellation/FamilyMaps.lean:77:10: `dif_pos` has been deprecated: Use `dite_eq_left` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/StandardModel/AnomalyCancellation/FamilyMaps.lean:77:22: `dif_pos` has been deprecated: Use `dite_eq_left` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/StandardModel/AnomalyCancellation/FamilyMaps.lean:78:10: `dif_neg` has been deprecated: Use `dite_eq_right` instead",
+   "level": "warning"},
+  {"message":
+   "Physlib/Particles/StandardModel/AnomalyCancellation/FamilyMaps.lean:78:22: `dif_neg` has been deprecated: Use `dite_eq_right` instead",
+   "level": "warning"}],
+ "inputs":
+ [["deps",
+   [["Physlib/Physlib:extraDep", [["@Physlib:extraDep", "00000000000006bb"]]],
+    ["imports",
+     [["Physlib.Particles.StandardModel.AnomalyCancellation.Basic transitive imports (public)",
+       "e589be1527fb9a31"],
+      ["Physlib.Particles.StandardModel.AnomalyCancellation.Basic:importArts",
+       "b76bd907f6a2eb46"]]]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.34.0, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b",
+   "a1c6c7aa3e9abfe7"],
+  ["C:\\lean\\libs\\physlib\\Physlib\\Particles\\StandardModel\\AnomalyCancellation\\FamilyMaps.lean",
+   "eaa6a793057355f1"],
+  ["options", "00000000000006bb"],
+  ["isModule: true", "760fcc16989f4b9b"],
+  ["Module.name: Physlib.Particles.StandardModel.AnomalyCancellation.FamilyMaps",
+   "5bf978216d78ed96"],
+  ["Package.id?: (some Physlib)", "6dd4b1a3d0e46d70"],
+  ["Module.leanArgs: #[-Dwarn.sorry=false, -Dweak.says.verify=true]",
+   "72cd5083b9c31fb2"]],
+ "depHash": "9165b89f44598f14"}

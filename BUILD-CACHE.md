@@ -21,9 +21,10 @@ Then `lake build` should report `All targets up-to-date`.
 
 Requirements:
 
-* `lean-toolchain` must be the same (`leanprover/lean4:v4.34.0-rc1`);
+* `lean-toolchain` must be the same (`leanprover/lean4:v4.34.0`);
 * the mathlib pin in `lake-manifest.json` must resolve to the same revision —
-  the oleans record the content hashes of their dependencies;
+  mathlib tag `v4.34.0`, rev `5ed2965` — the oleans record the content hashes of
+  their dependencies;
 * `.lake/packages/*` must be wired to that mathlib (the usual junction /
   symlink setup). This branch deliberately does **not** carry `.lake/packages`.
 
@@ -39,5 +40,7 @@ Requirements:
   among the outputs recorded in any `.trace`, and removing one leaves
   `lake build --no-build` reporting up-to-date.
 
-Everything on this branch comes from a plain `lake build` plus the stub pass of
-`_mk_cache.py`; nothing is hand-written.
+Everything on this branch comes from a plain `lake build` against mathlib tag
+`v4.34.0` plus the stub pass over the `ir/**/*.c` files; nothing is hand-written.
+`.gitattributes` pins `.lake/**` to `-text`, so the artifacts are stored
+byte-for-byte whatever a checkout's `core.autocrlf` says.
