@@ -1195,7 +1195,7 @@ theorem ker_le_traceRight {ρ σ : MState (dA × dB)}
     intro b
     exact Finset.sum_eq_zero_iff_of_nonneg (fun b _ => h_nonneg b) |>.mp hin b (Finset.mem_univ _)
   have h_σ_zero : ∀ b : dB, σ.M.mat *ᵥ (vecTensorBasis v.ofLp b) = 0 :=
-    fun b => (hσ_psd.dotProduct_mulVec_zero_iff _).mp (h_each_zero b)
+    fun b => (hσ_psd.dotProduct_mulVec_zero_iff (x := vecTensorBasis v.ofLp b)).mp (h_each_zero b)
   have h_ρ_zero : ∀ b : dB, ρ.M.mat *ᵥ (vecTensorBasis v.ofLp b) = 0 := by
     intro b
     have hmem_σ : (WithLp.toLp 2 (vecTensorBasis v.ofLp b) : EuclideanSpace ℂ _) ∈ σ.M.ker := by

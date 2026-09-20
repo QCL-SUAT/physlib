@@ -159,10 +159,20 @@ lemma dualWeyl_mul_pauliContr_eq_ofRat :
 lemma leviCivita_mul_pauliDual :
     ({ε4ℂ | μ ν ρ κ ⊗ σ^^^ | τ(κ) α β =
       ε4ℂ | μ ν ρ κ ⊗ σ_^^ | κ α β}ᵀ : Prop) := by
-  rw [pauliDual_eq_pauliCo, prodT_permT_right, contrT_permT]
-  apply permT_congr
-  · decide
-  · rfl
+  -- The permutation bookkeeping is done on coordinates rather than through
+  -- `prodT_permT_right`, whose result the kernel of Lean v4.34 cannot check in time.
+  conv_lhs =>
+    rw [leviCivita_eq_ofRat, toTensor_dualLorentz_eq_ofRat, prodT_ofRat_ofRat, contrT_ofRat]
+  conv_rhs =>
+    rw [leviCivita_eq_ofRat, pauliCo_eq_ofRat, prodT_ofRat_ofRat, contrT_ofRat]
+  apply (Tensor.basis _).repr.injective
+  ext b
+  rw [ofRat_basis_repr_apply, permT_basis_repr_symm_apply]
+  simp only [ofRat_basis_repr_apply, map_sum]
+  apply Finset.sum_congr rfl
+  intro x _
+  apply (Function.Injective.eq_iff Physlib.RatComplexNum.toComplexNum_injective).mpr
+  decide +revert +kernel
 
 /-- Equation (2.26), the three-Pauli identity
 `σ^μ barσ^ν σ^ρ = g^{μν} σ^ρ - g^{μρ} σ^ν + g^{νρ} σ^μ

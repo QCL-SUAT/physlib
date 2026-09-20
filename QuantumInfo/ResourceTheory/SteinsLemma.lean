@@ -393,7 +393,6 @@ private theorem LemmaS3_sup {ε : Prob}
   --the (f n) / n term will go to zero.
   trans Filter.atTop.limsup fun n ↦ (—log β_ ε(ρ n‖{σ₂ n}) + f n) / n
   · refine Filter.limsup_le_limsup (.of_forall ?_)
-    dsimp
     intro x
     grw [LemmaS3_helper _ _ _ _ hσ]
   · apply le_of_eq

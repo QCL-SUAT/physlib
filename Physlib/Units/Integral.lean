@@ -47,7 +47,10 @@ noncomputable instance (M : Type)
   scaleUnit_id u μ := by
     simp [scaleUnit_id]
   scaleUnit_mul u1 u2 r μ := by
-    simp
+    rw [Measure.map_smul]
+    have h : AEMeasurable (fun m => ↑(u1.dimScale u2 (dim M)).1 • m) μ :=
+      (measurable_const_smul (α := M) ↑(u1.dimScale u2 (dim M)).1).aemeasurable
+    simpa [HasDim.scaleUnit_apply, NNReal.smul_def] using h
 
 variable {M : Type} [NormedAddCommGroup M] [NormedSpace ℝ M] [HasDim M]
     [MeasurableSpace M] [MeasurableConstSMul ℝ M]

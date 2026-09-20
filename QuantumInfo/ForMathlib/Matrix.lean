@@ -286,7 +286,7 @@ theorem zero_dotProduct_zero_iff : (∀ x : m → 𝕜, 0 = star x ⬝ᵥ A.mulV
   constructor
   · intro h
     ext i j
-    have h₂ := fun x ↦ (PosSemidef.dotProduct_mulVec_zero_iff hA x).mp (h x).symm
+    have h₂ := fun x ↦ (PosSemidef.dotProduct_mulVec_zero_iff hA (x := x)).mp (h x).symm
     classical have : DecidableEq m := inferInstance
     convert! congrFun (h₂ (Pi.single j 1)) i using 1
     simp

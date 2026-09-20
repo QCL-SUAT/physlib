@@ -11,6 +11,7 @@ public import Mathlib.Analysis.Complex.Basic
 public import Mathlib.Topology.Instances.Matrix
 public import Mathlib.Topology.Maps.Basic
 public import Mathlib.Topology.Algebra.Group.ClosedSubgroup
+public import Mathlib.Topology.Algebra.Group.Units
 /-!
 # The Lorentz Group
 
@@ -336,7 +337,7 @@ lemma toGL_embedding : IsEmbedding (@toGL d).toFun where
 /-- The embedding of the Lorentz group into `GL(n, ℝ)` gives `LorentzGroup d` an instance
   of a topological group. -/
 instance : IsTopologicalGroup (LorentzGroup d) :=
-  IsInducing.topologicalGroup toGL toGL_embedding.toIsInducing
+  Topology.IsInducing.isTopologicalGroup toGL toGL_embedding.toIsInducing
 
 /-!
 

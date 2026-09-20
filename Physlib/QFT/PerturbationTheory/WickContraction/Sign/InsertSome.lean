@@ -257,7 +257,7 @@ lemma sign_insert_some (φ : 𝓕.FieldOp) (φs : List 𝓕.FieldOp) (φsΛ : Wi
       · rw [succAbove_mem_insertAndContractLiftFinset]
         simp only [signFinset, Finset.mem_filter, Finset.mem_univ, true_and]
         exact ⟨h1.1, h1.2.1, Or.inl ((φsΛ.getDual?_eq_none_iff_mem_uncontracted ↑j).mpr j.2)⟩
-      · simp_all
+      · exact le_of_not_gt h1.2.2
     · rw [ite_eq_right, stat_ofFinset_of_insertAndContractLiftFinset]
       simp_all
 

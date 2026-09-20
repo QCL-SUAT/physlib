@@ -395,7 +395,8 @@ theorem HPMap.linearMap_ofHermitianMat (f : HermitianMat dIn ℂ →ₗ[ℝ] Her
     LinearMapClass.linearMap (HPMap.ofHermitianMat f) = f := by
   ext1 ⟨x, hx⟩
   ext1
-  simp only [ofHermitianMat, LinearMap.coe_coe]
+  dsimp only [HPMap.ofHermitianMat, LinearMapClass.linearMap, LinearMap.ofClass,
+    HPMap.instFunLike]
   simp only [HPMap.apply_hermitianMat_eq, HPMap.map, HermitianMat.mat_mk,
     LinearMap.coe_mk, AddHom.coe_mk]
   conv => enter [2, 1, 2, 1]; rw [← realPart_add_I_smul_imaginaryPart x]
@@ -407,15 +408,9 @@ omit [Fintype dOut] in
 @[simp]
 theorem HPMap.ofHermitianMat_linearMap (f : HPMap dIn dOut ℂ) :
     ofHermitianMat (LinearMapClass.linearMap f) = f := by
-  ext : 3
-  simp only [map, ofHermitianMat, instFunLike, LinearMap.coe_coe, LinearMap.coe_mk, AddHom.coe_mk]
-  simp only [realPart, imaginaryPart, LinearMap.coe_comp, Function.comp_apply]
-  simp only [selfAdjointPart,  LinearMap.coe_mk, AddHom.coe_mk,
-    HermitianMat.mat_mk,LinearMap.map_smul_of_tower, skewAdjoint.negISMul]
-  simp only [Matrix.add_apply, Matrix.smul_apply, smul_eq_mul]
-  ring_nf
-  simp
-  ring
+  -- the two maps have the same underlying function by `HPMap.linearMap_ofHermitianMat`,
+  -- and `LinearMap.ofClass` is injective
+  exact LinearMap.ofClass_injective (HPMap.linearMap_ofHermitianMat (LinearMapClass.linearMap f))
 
 
 variable (f : HPMap dIn dOut) (A : HermitianMat dIn ℂ)

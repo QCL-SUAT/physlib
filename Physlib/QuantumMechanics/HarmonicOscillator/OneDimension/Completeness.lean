@@ -421,10 +421,11 @@ lemma zero_of_orthogonal_mk (f : ℝ → ℂ) (hf : MemHS f)
     simp only [ofReal_exp, ofReal_div, ofReal_neg, ofReal_mul, ofReal_pow, ofReal_ofNat,
       Pi.zero_apply, _root_.mul_eq_zero, Complex.exp_ne_zero, or_false] at h1
     exact h1
-    exact aeStronglyMeasurable_of_memHS hf
-    simp only [ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true]
-    · exact hInt.aestronglyMeasurable
-    · simp
+    all_goals first
+      | exact aeStronglyMeasurable_of_memHS hf
+      | exact hInt.aestronglyMeasurable
+      | simp only [ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true]
+      | simp
   rw [h2]
   simp
 

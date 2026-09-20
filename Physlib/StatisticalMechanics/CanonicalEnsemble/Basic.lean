@@ -464,7 +464,8 @@ lemma μProd_add {T : Temperature} [IsFiniteMeasure (𝓒.μBolt T)]
 
 lemma μProd_congr (e : ι1 ≃ᵐ ι) (T : Temperature) :
     (𝓒.congr e).μProd T = (𝓒.μProd T).map e.symm := by
-  rw [μProd, μProd, μBolt_congr, Measure.map_smul, MeasurableEquiv.map_apply, Set.preimage_univ]
+  rw [μProd, μProd, μBolt_congr, Measure.map_smul _ e.symm.measurable.aemeasurable,
+    MeasurableEquiv.map_apply, Set.preimage_univ]
 
 lemma μProd_nsmul (n : ℕ) (T : Temperature) [IsFiniteMeasure (𝓒.μBolt T)] :
     (nsmul n 𝓒).μProd T = MeasureTheory.Measure.pi fun _ => 𝓒.μProd T := by

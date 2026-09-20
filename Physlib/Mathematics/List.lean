@@ -730,7 +730,7 @@ lemma mem_take_finrange : (n m : ℕ) → (a : Fin n) → a ∈ List.take m (Lis
     simp [List.finRange_succ]
   | n +1, m + 1, ⟨i + 1, h⟩ => by
     simp only [List.finRange_succ, List.take_succ_cons, List.mem_cons, Fin.ext_iff, Fin.val_zero,
-      AddLeftCancelMonoid.add_eq_zero, one_ne_zero, and_false, false_or, add_lt_add_iff_right]
+      Nat.add_eq_zero_iff, one_ne_zero, and_false, false_or, add_lt_add_iff_right]
     rw [← List.map_take, @List.mem_map]
     apply Iff.intro
     · intro h

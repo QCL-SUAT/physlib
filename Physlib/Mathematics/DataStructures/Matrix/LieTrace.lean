@@ -7,6 +7,7 @@ module
 
 public import Mathlib.Analysis.Complex.Polynomial.Basic
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+public import Mathlib.Topology.Algebra.InfiniteSum.Constructions
 public import Physlib.Mathematics.SchurTriangulation
 
 /-!
@@ -60,9 +61,9 @@ lemma matrix_tsum_apply
     have h := Pi.summable.1 hf
     exact h i
   have h₁ : ((∑' n, f n) : Matrix m m 𝕂) i = (∑' n, (f n) i) := by
-    exact tsum_apply hf
+    exact Pi.tsum_apply hf
   have h₂ : ((∑' n, (f n) i) : m → 𝕂) j = (∑' n, (f n) i j) := by
-    exact tsum_apply h_row_summable
+    exact Pi.tsum_apply h_row_summable
   rw [h₁, h₂]
 
 variable [Fintype m] [LinearOrder m]

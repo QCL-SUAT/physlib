@@ -190,33 +190,23 @@ lemma HermitianMat.trace_rpow_le_trace_of_le_one
 
 private lemma trace_conj_rpow_eq_inner (hα₀ : 0 < α) (hα : α < 1) :
     ((ρ.M ^ α).conj (σ.M ^ ((1 - α) / (2 * α) * α)).mat).trace = ⟪ρ.M ^ α, σ.M ^ (1 - α)⟫_ℝ := by
-  convert congr_arg _ ( HermitianMat.inner_eq_trace_rc _ _ ) using 2;
-  rotate_left;
-  rotate_left;
-  rotate_left;
-  exact d;
-  exact ℂ;
-  all_goals try infer_instance;
-  exact ρ ^ α;
-  exact σ ^ ( 1 - α );
-  rotate_right;
-  exact fun x => x.re;
-  · unfold HermitianMat.conj;
-    simp [ Matrix.trace, Matrix.mul_apply, inner]
-    rw [ show ( 1 - α ) / ( 2 * α ) * α = ( 1 - α ) / 2 by rw [ div_mul_eq_mul_div, div_eq_iff ] <;> linarith ];
-    -- By the properties of the trace, we can rearrange the terms inside the trace.
-    have h_trace : Matrix.trace ((σ.M ^ ((1 - α) / 2)).mat * (ρ.M ^ α).mat * (σ.M ^ ((1 - α) / 2)).mat) = Matrix.trace ((ρ.M ^ α).mat * (σ.M ^ (1 - α)).mat) := by
-      have h_trace : (σ.M ^ ((1 - α) / 2)).mat * (σ.M ^ ((1 - α) / 2)).mat = (σ.M ^ (1 - α)).mat := by
-        have := σ.nonneg;
-        rw [ ← HermitianMat.mat_rpow_add this ]
-        ring_nf
-        linarith;
-      rw [ ← h_trace, Matrix.mul_assoc ];
-      rw [ ← Matrix.trace_mul_comm ]
-      simp [ Matrix.mul_assoc ]
-    convert! congr_arg Complex.re h_trace using 1;
-    simp [ Matrix.trace, Matrix.mul_apply ];
-  · exact HermitianMat.inner_eq_re_trace _ _
+  rw [HermitianMat.inner_eq_re_trace]
+  simp only [HermitianMat.conj_apply_mat, HermitianMat.trace]
+  congr 1
+  have hαne : α ≠ 0 := ne_of_gt hα₀
+  have hpow : (σ.M ^ ((1 - α) / (2 * α) * α)).mat = (σ.M ^ ((1 - α) / 2)).mat := by
+    congr 1
+    field_simp
+    try ring_nf
+  have hHerm : ((σ.M ^ ((1 - α) / 2)).mat)ᴴ = (σ.M ^ ((1 - α) / 2)).mat :=
+    (σ.M ^ ((1 - α) / 2)).H
+  have hsq : (σ.M ^ ((1 - α) / 2)).mat * (σ.M ^ ((1 - α) / 2)).mat = (σ.M ^ (1 - α)).mat := by
+    rw [← HermitianMat.mat_rpow_add σ.nonneg (show (1 - α) / 2 + (1 - α) / 2 ≠ 0 by linarith)]
+    congr 1
+    ring
+  rw [hpow, hHerm, ← hsq, Matrix.mul_assoc]
+  rw [← Matrix.trace_mul_comm]
+  simp [Matrix.mul_assoc]
 
 private lemma inner_rpow_le_one (hα₀ : 0 < α) (hα : α < 1) :
     ⟪ρ.M ^ α, σ.M ^ (1 - α)⟫_ℝ ≤ 1 := by
