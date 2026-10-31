@@ -281,7 +281,8 @@ lemma inverseCayleyPMap_cayleyUnitary_domain {T : H →ₗ.[ℂ] H}
     simp only [LinearPMap.sub_apply, LinearPMap.smul_apply]
     module
   have hrange : (1 - unitaryToPMap (cayleyUnitary T hT)).toFun.range = T.domain := by
-    rw [hEq, linearPMap_range_smul _ (by norm_num), LinearPMap.inverse_range (LinearPMap.ker_eq_bot_of_toFun_ker_eq_bot hplusker)]
+    rw [hEq, linearPMap_range_smul _ (by norm_num),
+      LinearPMap.inverse_range (LinearPMap.ker_eq_bot_of_toFun_ker_eq_bot hplusker)]
     simp [LinearPMap.add_domain]
   rw [inverseCayleyPMap_domain, hrange]
 

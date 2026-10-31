@@ -163,12 +163,13 @@ lemma toFieldStrength_eq_sum_basis {d} {A : ElectromagneticPotential d}
     Finsupp.coe_sub, permT_basis_repr_symm_apply, Function.comp_apply,
     contrT_basis_repr_apply_eq_fin, prodT_basis_repr_apply,
     contrMetric_repr_apply_eq_minkowskiMatrix,
-    prod_tensor_basis_eq_map_reindex CoVector.basis_eq_map_tensor_basis Vector.basis_eq_map_tensor_basis,
+    prod_tensor_basis_eq_map_reindex CoVector.basis_eq_map_tensor_basis
+      Vector.basis_eq_map_tensor_basis,
     LinearEquiv.symm_apply_apply, Equiv.symm_symm, deriv_basis_repr_apply, Finset.sum_sub_distrib,
      basisIdxCongr_eq_refl,
-     
-    
-    
+
+
+
     ]
   -- v4.34 port note: this goal used to be closed by the trailing `rfl` (the two sums
   -- reduce to the same term up to the `IsReindexing.inv` index bookkeeping). In v4.34 the

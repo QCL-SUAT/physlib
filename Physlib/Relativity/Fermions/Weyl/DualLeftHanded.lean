@@ -102,9 +102,9 @@ def basis : Basis (Fin 2) ℂ DualLeftHandedWeyl := Basis.ofEquivFun
   (DualLeftHandedWeyl.toFin2ℂFunAddEquiv.linearEquiv ℂ)
 
 lemma basis_apply (i j : Fin 2) : (basis i).1 j = if j = i then 1 else 0 := by
-  simp only [basis,   
+  simp only [basis,
        Basis.coe_ofEquivFun,
-       
+
     ]
   change Pi.single i 1 j = _
   simp [Pi.single_apply]

@@ -198,14 +198,17 @@ lemma mem_regularityDomain_iff {T : H →ₗ.[ℂ] H} {z : ℂ} :
     rw [inverse_domain] at hx
     obtain ⟨y, hy⟩ := hx
     specialize h_bound ⟨y, y.2.1⟩
-    simp_all [le_inv_mul_iff₀, sub_apply, inverse_apply_eq (LinearPMap.ker_eq_bot_of_toFun_ker_eq_bot h_ker) (y := ⟨x, hx⟩) hy]
+    simp_all [le_inv_mul_iff₀, sub_apply,
+      inverse_apply_eq (LinearPMap.ker_eq_bot_of_toFun_ker_eq_bot h_ker)
+        (y := ⟨x, hx⟩) hy]
   · intro ⟨h_ker, h_cont⟩
     obtain ⟨c, hc, h_bound⟩ := LinearMap.continuous_iff_bounded.mp h_cont
     refine ⟨c⁻¹, inv_pos.mpr hc, fun x ↦ ?_⟩
     apply (inv_mul_le_iff₀ hc).mpr
     have hx : ↑x ∈ (T - z • 1).domain := by simp [sub_domain]
     specialize h_bound ⟨(T - z • 1) ⟨x, hx⟩, by simp [inverse_domain]⟩
-    simp only [toFun_eq_coe, inverse_apply_eq (LinearPMap.ker_eq_bot_of_toFun_ker_eq_bot h_ker) (x := ⟨x, hx⟩), coe_norm] at h_bound
+    simp only [toFun_eq_coe, inverse_apply_eq (LinearPMap.ker_eq_bot_of_toFun_ker_eq_bot h_ker)
+      (x := ⟨x, hx⟩), coe_norm] at h_bound
     simp_all [sub_apply]
 
 /-- The regularity domain of `T` contains open balls with radii controlled by the lower bounds. -/
@@ -842,7 +845,9 @@ lemma resolvent_sub
       ext x
       · suffices 𝑅 T₂ z ⟨x, by simp [inverse_domain, hz₂.2]⟩ ∈ T₁.domain by
           simp [sub_domain, mem_compRestricted_domain_iff, inverse_domain, hz₁.2, hz₂.2, this]
-        have hR₂ : (𝑅 T₂ z).toFun.range = T₂.domain := by simp [inverse_range (LinearPMap.ker_eq_bot_of_toFun_ker_eq_bot hz₂.1), sub_domain]
+        have hR₂ : (𝑅 T₂ z).toFun.range = T₂.domain := by
+          simp [inverse_range (LinearPMap.ker_eq_bot_of_toFun_ker_eq_bot hz₂.1),
+            sub_domain]
         exact hT (hR₂ ▸ mem_range_self _)
       · rfl
 
@@ -874,7 +879,8 @@ lemma resolvent_sub' {T : H →ₗ.[ℂ] H} (z₁ z₂ : ℂ) (hz₁ : z₁ ∈ 
       _ = (z₁ - z₂) • 𝑅 S z₁ := by
         congr
         ext
-        · simp [mem_compRestricted_domain_iff, ← inverse_range (LinearPMap.ker_eq_bot_of_toFun_ker_eq_bot hz₁'.1)]
+        · simp [mem_compRestricted_domain_iff,
+            ← inverse_range (LinearPMap.ker_eq_bot_of_toFun_ker_eq_bot hz₁'.1)]
         · rfl
 
 end

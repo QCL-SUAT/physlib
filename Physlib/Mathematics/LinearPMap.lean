@@ -379,7 +379,8 @@ lemma inverse_inverse : f.inverse.inverse = f := by
   · rw [inverse_domain, inverse_range (ker_eq_bot_of_toFun_ker_eq_bot h_ker)]
   · refine inverse_apply_eq (y := ⟨x, hx⟩) (x := ⟨f ⟨x, hx'⟩, by simp [inverse_domain]⟩) ?_ ?_
     · exact ker_eq_bot_of_toFun_ker_eq_bot (inverse_ker h_ker)
-    · exact inverse_apply_eq (y := ⟨f ⟨x, hx'⟩, by simp [inverse_domain]⟩) (x := ⟨x, hx'⟩) (ker_eq_bot_of_toFun_ker_eq_bot h_ker) rfl
+    · exact inverse_apply_eq (y := ⟨f ⟨x, hx'⟩, by simp [inverse_domain]⟩) (x := ⟨x, hx'⟩)
+        (ker_eq_bot_of_toFun_ker_eq_bot h_ker) rfl
 
 set_option maxRecDepth 4000 in
 lemma inverse_compRestricted_eq : f.inverse ∘ᵣ f = domRestrict 1 f.domain := by

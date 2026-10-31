@@ -262,8 +262,8 @@ lemma dense_top (hμ : μ ≤ volume) [μ.IsOpenPosMeasure] [IsFiniteMeasureOnCo
         have hξB : Tendsto (fun n ↦ ∫⁻ x in B n, ‖ξ x‖ₑ ^ 2 ∂μ) atTop (nhds 0) := by
           refine tendsto_setLIntegral_zero ?_ ?_
           · refine lt_top_iff_ne_top.mp ?_
-            have hξ2 : AEStronglyMeasurable (fun x : Space d => ‖(ξ : Space d → ℂ) x‖ ^ 2
-                : Space d → ℝ) μ :=
+            have hξ2 : AEStronglyMeasurable (fun x : Space d => ‖(ξ : Space d → ℂ) x‖ ^ 2 :
+                Space d → ℝ) μ :=
               (Lp.aestronglyMeasurable ξ).norm.pow 2
             have hξ3 : eLpNorm (fun x : Space d => ‖(ξ : Space d → ℂ) x‖ ^ 2 : Space d → ℝ) 1 μ =
                 ∫⁻ (x : Space d), ‖(ξ : Space d → ℂ) x‖ₑ ^ 2 ∂μ := by

@@ -197,7 +197,8 @@ variable (hf : MemHS f μ) (hg : MemHS g μ)
 /-- Given a function `f : Space d → ℂ` such that `MemHS f μ` is true via `hf`,
   `mk hf` is the element of the Hilbert space defined by `f`. -/
 def mk : SpaceDHilbertSpace d μ :=
-  ⟨AEEqFun.mk f hf.aestronglyMeasurable, mem_iff.mpr <| hf.ae_eq (AEEqFun.coeFn_mk f hf.aestronglyMeasurable).symm⟩
+  ⟨AEEqFun.mk f hf.aestronglyMeasurable,
+    mem_iff.mpr <| hf.ae_eq (AEEqFun.coeFn_mk f hf.aestronglyMeasurable).symm⟩
 
 @[simp]
 lemma mk_neg : mk hf.neg = -mk hf := rfl

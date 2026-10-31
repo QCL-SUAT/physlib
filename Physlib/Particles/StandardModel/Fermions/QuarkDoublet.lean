@@ -63,7 +63,9 @@ instance : AddCommGroup QuarkDoublet := Equiv.addCommGroup valEquiv
 
 /-- `valEquiv` bundled as an additive equivalence (v4.34 moved `Equiv.module`/
   `Equiv.linearEquiv` to `AddEquiv`, so the transported structure needs one). -/
-def valEquivAddEquiv : QuarkDoublet ≃+ Fermion.LeftHandedWeyl ⊗[ℂ] EuclideanSpace ℂ (Fin 3) ⊗[ℂ] EuclideanSpace ℂ (Fin 2) where
+def valEquivAddEquiv :
+    QuarkDoublet ≃+ Fermion.LeftHandedWeyl ⊗[ℂ] EuclideanSpace ℂ (Fin 3) ⊗[ℂ]
+      EuclideanSpace ℂ (Fin 2) where
   toFun := valEquiv
   invFun := valEquiv.symm
   left_inv := valEquiv.left_inv
